@@ -31,7 +31,7 @@ class TemporalAggregator(nn.Module):
             return x.mean(dim=1)
 
 class EnhancedMultiHeadAttention(nn.Module):
-    """增强版多头注意力机制"""
+    """多头注意力机制"""
     def __init__(self, d_model=256, num_heads=16, dropout=0.1):
         super().__init__()
         self.d_model = d_model
@@ -151,7 +151,7 @@ class AdvancedFeedForward(nn.Module):
         return self.layer_norm(residual + out)
 
 class MultiModalFusion(nn.Module):
-    """高级多模态融合模块"""
+    """多模态融合模块"""
     def __init__(self, 
                  visual_dim=512, 
                  tactile_dim=128, 
@@ -421,17 +421,7 @@ class UncertaintyQuantification(nn.Module):
         return final_uncertainty
 
 class AdaLeRobotEnhancedPerceptionModel(nn.Module):
-    """
-    Ada LeRobot增强版感知模型 - 10M参数版本
-    
-    增强特性:
-    - 30个输出任务 (从18个扩展)
-    - 更深的Transformer架构 (8层 -> 12层)
-    - 增强的多模态融合
-    - 更精细的注意力机制
-    - 高级不确定性量化
-    - 任务间依赖关系建模
-    """
+
     
     def __init__(self,
                  visual_dim=512,
@@ -439,8 +429,8 @@ class AdaLeRobotEnhancedPerceptionModel(nn.Module):
                  force_dim=64,
                  proprioceptive_dim=32,
                  d_model=256,
-                 num_layers=12,  # 增加到12层
-                 num_heads=16,   # 增加头数
+                 num_layers=12,  
+                 num_heads=16,   
                  dropout=0.1,
                  task_configs=None):
         super().__init__()
@@ -479,7 +469,7 @@ class AdaLeRobotEnhancedPerceptionModel(nn.Module):
             }) for _ in range(num_layers)
         ])
         
-        # 增强任务头 (30个任务)
+        # 任务头
         self.task_head = EnhancedTaskHead(input_dim=d_model, task_configs=task_configs)
         
         # 不确定性量化
@@ -601,7 +591,7 @@ class AdaLeRobotEnhancedPerceptionModel(nn.Module):
         }
 
 def create_enhanced_ada_lerobot_model():
-    """创建增强版Ada LeRobot感知模型"""
+    """Ada LeRobot感知模型"""
     model = AdaLeRobotEnhancedPerceptionModel(
         visual_dim=512,      # 视觉特征维度
         tactile_dim=128,     # 触觉特征维度  
@@ -616,8 +606,8 @@ def create_enhanced_ada_lerobot_model():
     return model
 
 def demo_enhanced_model():
-    """演示增强版模型"""
-    print("🚀 Ada LeRobot增强版感知模型 v2.0")
+    """演示模型"""
+    print("🚀 Ada LeRobot感知模型 v2.0")
     print("=" * 60)
     
     # 创建模型
