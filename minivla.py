@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """
 Integrated VLA-SAC Training Script Reproduction
-基于实际模型分析重建的完整训练脚本
 
 Model: checkpoint_integrated_supervised_epoch_80.pth
 Architecture: Dual-module (Perception + VLA Adapter)
@@ -28,14 +27,14 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class IntegratedVLASACConfig:
-    """集成VLA-SAC配置类 - 基于实际模型文件重建"""
+    """集成VLA-SAC配置类"""
     
-    # 模型路径配置 (从实际检查点提取)
+    # 模型路径配置 
     pretrained_vla_path: str = "/mnt/data/high_performance_minivla_best.pth"
     perception_model_path: str = "/mnt/data/ADA_Multimodal_Perception_System/instruct/best_model_epoch_1819.pth"
     data_root: str = "/mnt/data"
     
-    # 训练配置 (从实际检查点提取)
+    # 训练配置 
     batch_size: int = 12
     image_size: int = 224
     supervised_epochs: int = 80
@@ -77,7 +76,7 @@ class PerceptionModel(nn.Module):
         super().__init__()
         self.config = config
         
-        # 输入投影层 (基于实际模型结构)
+        # 输入投影层 
         self.visual_proj = nn.Linear(512, config.perception_dim)      # 131,072 参数
         self.tactile_proj = nn.Linear(128, config.perception_dim)     # 32,768 参数
         self.force_proj = nn.Linear(64, config.perception_dim)        # 16,384 参数
