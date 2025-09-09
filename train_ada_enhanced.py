@@ -53,7 +53,7 @@ class AdaExpandedDataset(Dataset):
             available_keys = list(f.keys())
             logger.info(f"数据集顶级键: {available_keys}")
 
-            # 检查是否是我们生成的10K数据集格式 (trajectory_0, trajectory_1, ...)
+            # 检查是数据集格式 (trajectory_0, trajectory_1, ...)
             if 'trajectory_0' in f and f.attrs.get('total_trajectories', 0) > 0:
                 logger.info("检测到我们生成的10K数据集格式")
                 self._load_trajectory_format(f)
