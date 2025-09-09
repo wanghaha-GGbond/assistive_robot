@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 
 @dataclass
 class SACConfig:
-    """SAC强化学习配置 - 基于实际模型配置"""
+    """SAC强化学习配置"""
     
     # 模型路径
     supervised_model_path: str = "checkpoint_integrated_supervised_epoch_80.pth"
